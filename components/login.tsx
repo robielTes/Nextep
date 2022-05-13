@@ -1,12 +1,14 @@
 import React,{Component} from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Button, TextInput} from 'react-native';
+import { Text, View,TouchableOpacity,TextInput} from 'react-native';
 
 
 
 export default class Login extends Component {
     state = {
       isLogIn :false,
-      isSignIn :false
+      isSignIn :false,
+      username:'',
+      password:'',
     };
      render()
      {
@@ -20,22 +22,29 @@ export default class Login extends Component {
                 </Text>
                 <TextInput style={{borderBottomColor:'#f1f1f1', borderBottomWidth:1, fontWeight:'bold', color:'black',fontSize:18, paddingVertical:10}}
                 placeholderTextColor={'#000000'}
-                placeholder="Enter your username or email"/>
+                placeholder="Enter your username or email"
+                onChangeText={(newUsername)=> this.setState({username:newUsername})}/>
                 <Text style={{color:'#e7e7e7',fontWeight:'bold',paddingTop:10}}>
                     Enter Password
                 </Text>
                 <TextInput style={{borderBottomColor:'#f1f1f1', borderBottomWidth:1, fontWeight:'bold',fontSize:18, paddingVertical:10}} 
                 placeholderTextColor={'#000000'}
-                placeholder="Enter your password"/>
+                placeholder="Enter your password"
+                onChangeText={(newPassword)=> this.setState({password:newPassword})}/>
             </View>
 
 
             <TouchableOpacity 
                 style={{ padding:10, borderRadius:30, alignItems:'center',
-                    backgroundColor:'#43c6a6'}}
-                    onPress={() => {} 
+                    backgroundColor: this.state.isLogIn?'white':'#43c6a6'}}
+                    onPress={() => {
+                     if(this.state.username=='Admin' && this.state.password=='Admin')
+                     {
+                       this.setState({isLogIn:true})
+                     }
+                    } 
                     }>
-             <Text style={{color: 'white', fontWeight:'bold', marginHorizontal:100, fontSize:20}}> 
+             <Text style={{color: this.state.isLogIn?'#43c6a6': 'white', fontWeight:'bold', marginHorizontal:100, fontSize:20}}> 
                 LOGIN  
              </Text>
            </TouchableOpacity> 
