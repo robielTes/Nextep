@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import { Text, View,TouchableOpacity,TextInput} from 'react-native';
+import axios from 'axios';
+import { config } from '../config';
 
 
 
@@ -9,6 +11,7 @@ export default class Login extends Component {
       isSignIn :false,
       username:'',
       password:'',
+      token:'',
     };
      render()
      {
@@ -39,12 +42,21 @@ export default class Login extends Component {
                 style={{ padding:10, borderRadius:30, alignItems:'center',
                     backgroundColor: this.state.isLogIn?'white':'#43c6a6'}}
                     onPress={() => {
-                     if(this.state.username=='Admin' && this.state.password=='Admin')
-                     {
-                       this.setState({isLogIn:true})
-                     }
-                    } 
+                      
+                      axios.post(config.apiurl+'me/token',{
+                        'username':this.state.username,
+                        'password':this.state.password})
+                        .then(res => {
+                          this.setState({token:res.data});
+                        } )
+                        .catch(err => {
+                          console.log(err);
+                      
+                        }
+                      );
+                    }
                     }>
+
              <Text style={{color: this.state.isLogIn?'#43c6a6': 'white', fontWeight:'bold', marginHorizontal:100, fontSize:20}}> 
                 LOGIN  
              </Text>
@@ -64,4 +76,5 @@ export default class Login extends Component {
         );
       }
 }
+
   

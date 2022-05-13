@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, ScrollView} from 'react-native';
 import Banner from './components/banner';
 import Login from './components/login';
 
@@ -11,11 +11,11 @@ export default class App extends Component {
         <View style={styles.container }>
           <Banner />
           <Text style={{fontSize:30,fontWeight:'bold', paddingVertical:40}}>
-          Login
-        </Text>
-        <Login />
-        <StatusBar style="auto" />
-      </View>
+            Login
+          </Text>
+          <Login />
+          <StatusBar style="auto" />
+        </View>
      </ScrollView>
     );
   }
