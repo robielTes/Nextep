@@ -1,22 +1,7 @@
 import React,{Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Button, TextInput} from 'react-native';
 
-class Input extends Component {
-    render()
-    {
-       return(
-           <View style={{paddingBottom:100, paddingTop:100}}>
-           <Text style={{color:'#e7e7e7',fontWeight:'bold'}}>
-               this.props.label
-           </Text>
-           <TextInput style={{borderBottomColor:'#f1f1f1', borderBottomWidth:1, fontWeight:'bold', color:'black',fontSize:18, paddingVertical:10}}
-           placeholderTextColor={'#000000'}
-           placeholder={"Enter your username or email"}/>
-       </View>
-         
-       );
-     }
-}
+
 
 export default class Login extends Component {
     state = {
@@ -28,7 +13,7 @@ export default class Login extends Component {
         return(
           <View>
             <View style={{marginBottom:10}}>
-            <View style={{paddingBottom:100, paddingTop:100}}>
+            <View style={{paddingBottom:80, paddingTop:80}}>
                 
                 <Text style={{color:'#e7e7e7',fontWeight:'bold'}}>
                     Username or Email
