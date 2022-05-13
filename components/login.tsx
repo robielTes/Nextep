@@ -30,6 +30,7 @@ export default class Login extends Component {
                 <TextInput style={{borderBottomColor:'#f1f1f1', borderBottomWidth:1, fontWeight:'bold',fontSize:18, paddingVertical:10}} 
                 placeholderTextColor={'#000000'}
                 placeholder="Enter your password"
+                secureTextEntry={true}
                 onChangeText={(newPassword)=> this.setState({password:newPassword})}/>
             </View>
 
