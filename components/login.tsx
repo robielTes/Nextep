@@ -1,20 +1,16 @@
 import React from 'react';
 import { Text, View,TouchableOpacity,TextInput} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios';
 import { config } from '../config';
-import Profile from './profile';
 import Banner from './banner';
 
 
 
-export default function Login ({navigation}) {
+export default function Login ({navigation ,route}) {
   const [isLogIn, setIsLogIn] = React.useState(false);
   const [isSignIn, setIsSignIn] = React.useState(false);
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [token, setToken] = React.useState('');
 
         return(
           <View style={{ flex: 1,backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',}}>
@@ -51,9 +47,11 @@ export default function Login ({navigation}) {
                         'username':username,
                         'password':password})
                         .then(res => {
-                          setToken(res.data);
                           setIsLogIn(true);
-                          navigation.navigate('Profile',)
+                          navigation.navigate({
+                            name: 'Profile',
+                            params: {token: res.data}
+                          });
                         })
                         .catch(err => {
                           setIsLogIn(false);
