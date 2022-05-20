@@ -1,23 +1,17 @@
-import React,{Component} from 'react';
+import React from 'react';
 import { Text, View,TouchableOpacity,TextInput} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios';
 import { config } from '../config';
 
 
 
-export default class Login extends Component {
-    state = {
-      isLogIn :false,
-      isSignIn :false,
-      username:'',
-      password:'',
-      token:'',
-      profile:'',
-    };
-     render()
-     {
+export default function Login () {
+  const [isLogIn, setIsLogIn] = React.useState(false);
+  const [isSignIn, setIsSignIn] = React.useState(false);
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [token, setToken] = React.useState('');
+
         return(
           <View>
             <View style={{marginBottom:10}}>
@@ -32,7 +26,7 @@ export default class Login extends Component {
                 <TextInput style={{borderBottomColor:'#f1f1f1', borderBottomWidth:1, fontWeight:'bold', color:'black',fontSize:18, paddingVertical:10}}
                 placeholderTextColor={'#000000'}
                 placeholder="Enter your username or email"
-                onChangeText={(newUsername)=> this.setState({username:newUsername})}/>
+                onChangeText={(newUsername)=> setUsername(newUsername)}/>
                 <Text style={{color:'#e7e7e7',fontWeight:'bold',paddingTop:10}}>
                     Enter Password
                 </Text>
@@ -40,31 +34,31 @@ export default class Login extends Component {
                 placeholderTextColor={'#000000'}
                 placeholder="Enter your password"
                 secureTextEntry={true}
-                onChangeText={(newPassword)=> this.setState({password:newPassword})}/>
+                onChangeText={(newPassword)=> setPassword(newPassword)}/>
             </View>
 
 
             <TouchableOpacity 
                 style={{ padding:10, borderRadius:30, alignItems:'center',
-                    backgroundColor: this.state.isLogIn?'white':'#43c6a6'}}
+                    backgroundColor: '#43c6a6'}}
                     onPress={() => {
                       
                       axios.post(config.apiurl+'mytoken',{
-                        'username':this.state.username,
-                        'password':this.state.password})
+                        'username':username,
+                        'password':password})
                         .then(res => {
-                          this.setState({token:res.data});
-                          this.setState({isLogIn:true});
+                          setToken(res.data.token);
+                          setIsLogIn(true);
                         } )
                         .catch(err => {
-                          console.log(err);
+                          setIsLogIn(false);
                       
                         }
                       );
                     }
                     }>
 
-             <Text style={{color: this.state.isLogIn?'#43c6a6': 'white', fontWeight:'bold', marginHorizontal:100, fontSize:20}}> 
+             <Text style={{color:'white', fontWeight:'bold', marginHorizontal:100, fontSize:20}}> 
                 LOGIN  
              </Text>
            </TouchableOpacity> 
@@ -81,7 +75,6 @@ export default class Login extends Component {
           </View>
           
         );
-      }
 }
 
   

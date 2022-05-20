@@ -1,11 +1,10 @@
-import React,{Component} from 'react';
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView} from 'react-native';
 import Banner from './components/banner';
 import Login from './components/login';
 
-export default class App extends Component {
-  render (){
+export default function App () {
     return (
      <ScrollView>
         <View style={styles.container }>
@@ -15,7 +14,6 @@ export default class App extends Component {
         </View>
      </ScrollView>
     );
-  }
 }
 
 const styles = StyleSheet.create({
