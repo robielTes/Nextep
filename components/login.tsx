@@ -43,7 +43,7 @@ export default class Login extends Component {
                     backgroundColor: this.state.isLogIn?'white':'#43c6a6'}}
                     onPress={() => {
                       
-                      axios.post(config.apiurl+'me/token',{
+                      axios.post(config.apiurl+'mytoken',{
                         'username':this.state.username,
                         'password':this.state.password})
                         .then(res => {
