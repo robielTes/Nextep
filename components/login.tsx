@@ -11,6 +11,7 @@ export default function Login ({navigation ,route}) {
   const [isSignIn, setIsSignIn] = React.useState(false);
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [token, setToken] = React.useState('');
 
         return(
           <View style={{ flex: 1,backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',}}>
@@ -44,20 +45,28 @@ export default function Login ({navigation ,route}) {
                     backgroundColor: '#43c6a6'}}
                     onPress={() => {
                       axios.post(config.apiurl+'mytoken',{
-                        'username':username,
-                        'password':password})
-                        .then(res => {
-                          setIsLogIn(true);
-                          navigation.navigate({
-                            name: 'Profile',
-                            params: {token: res.data}
-                          });
-                        })
-                        .catch(err => {
-                          setIsLogIn(false);
-                        }
-                      );
-                      
+                          'username':username,
+                          'password':password})
+                          .then(res => {
+                            setToken(res.data)
+                            setIsLogIn(true);
+                            const AuthStr = 'Bearer '.concat(token); 
+                            axios.get(config.apiurl+'profile', { headers: { Authorization: AuthStr } })
+                            .then(res => {
+                            navigation.navigate({
+                              name: 'Profile',
+                              params: {profile: res.data}
+                            }); 
+                            })
+                            .catch((err) => {
+                            console.log('error ' + err);
+                            });
+                          })
+                          .catch(err => {
+                            setIsLogIn(false);
+                          }
+                        );
+
                     }
                     }>
 

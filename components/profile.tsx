@@ -1,17 +1,26 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
+import axios from 'axios';
 import Banner from './banner';
+import { config } from '../config';
 
 
 export default function Profile ({navigation,route}) {
+      const profile = route.params?.profile
       return(
-            <View style={{ flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',}}>
+            <ScrollView>
+                  <View style={{ flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center'}}>
                   <Banner/>
                   <View style={{marginBottom:10}}>
-                  <Text style={{fontSize:30,fontWeight:'bold', paddingVertical:40,textAlign:'center',}}>
-                  {route.params?.token}
-                  </Text>
+                 {
+                       Object.keys(profile).map((value,key) => (
+                        <Text style={{fontSize:15,fontWeight:'bold', paddingVertical:10}}>
+                        {value}   :   {profile[value]}
+                        </Text>      
+                       ))
+                 }
                   </View>
             </View>
+            </ScrollView>
       );
   }
