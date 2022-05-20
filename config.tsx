@@ -1,3 +1,3 @@
 export const config = {
-      apiurl: 'http://runeo.paleo.ch/api/'
+      apiurl:'https://mockapi.mycpnv.ch/api/',
       };
