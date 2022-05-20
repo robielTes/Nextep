@@ -1,5 +1,7 @@
 import React from 'react';
 import { Text, View,TouchableOpacity,TextInput} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios';
 import { config } from '../config';
 import Profile from './profile';
@@ -7,7 +9,7 @@ import Banner from './banner';
 
 
 
-export default function Login () {
+export default function Login ({navigation}) {
   const [isLogIn, setIsLogIn] = React.useState(false);
   const [isSignIn, setIsSignIn] = React.useState(false);
   const [username, setUsername] = React.useState('');
@@ -40,6 +42,7 @@ export default function Login () {
               onChangeText={(newPassword)=> setPassword(newPassword)}/>
             </View>
 
+
             <TouchableOpacity 
                 style={{ padding:10, borderRadius:30, alignItems:'center',
                     backgroundColor: '#43c6a6'}}
@@ -50,11 +53,13 @@ export default function Login () {
                         .then(res => {
                           setToken(res.data);
                           setIsLogIn(true);
+                          navigation.navigate('Profile',)
                         })
                         .catch(err => {
                           setIsLogIn(false);
                         }
-                      );           
+                      );
+                      
                     }
                     }>
 
