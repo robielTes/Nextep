@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import { Text, View,TouchableOpacity,TextInput} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios';
 import { config } from '../config';
 
@@ -12,13 +14,17 @@ export default class Login extends Component {
       username:'',
       password:'',
       token:'',
+      profile:'',
     };
      render()
      {
         return(
           <View>
             <View style={{marginBottom:10}}>
-            <View style={{paddingBottom:80, paddingTop:80}}>
+            <Text style={{fontSize:30,fontWeight:'bold', paddingVertical:40,textAlign:'center',}}>
+              Login
+            </Text>
+            <View style={{paddingBottom:80, paddingTop:60}}>
                 
                 <Text style={{color:'#e7e7e7',fontWeight:'bold'}}>
                     Username or Email
@@ -48,6 +54,7 @@ export default class Login extends Component {
                         'password':this.state.password})
                         .then(res => {
                           this.setState({token:res.data});
+                          this.setState({isLogIn:true});
                         } )
                         .catch(err => {
                           console.log(err);

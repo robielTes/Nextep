@@ -10,9 +10,6 @@ export default class App extends Component {
      <ScrollView>
         <View style={styles.container }>
           <Banner />
-          <Text style={{fontSize:30,fontWeight:'bold', paddingVertical:40}}>
-            Login
-          </Text>
           <Login />
           <StatusBar style="auto" />
         </View>
