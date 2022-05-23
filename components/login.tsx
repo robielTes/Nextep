@@ -6,7 +6,7 @@ import Banner from './banner';
 
 
 
-export default function Login ({navigation ,route}) {
+export default function Login ({navigation}) {
   const [isLogIn, setIsLogIn] = React.useState(false);
   const [isSignIn, setIsSignIn] = React.useState(false);
   const [username, setUsername] = React.useState('');
@@ -44,14 +44,14 @@ export default function Login ({navigation ,route}) {
                 style={{ padding:10, borderRadius:30, alignItems:'center',
                     backgroundColor: '#43c6a6'}}
                     onPress={() => {
-                      axios.post(config.apiurl+'mytoken',{
+                      axios.post(config.apiUrl+'mytoken',{
                           'username':username,
                           'password':password})
                           .then(res => {
                             setToken(res.data)
                             setIsLogIn(true);
                             const AuthStr = 'Bearer '.concat(token); 
-                            axios.get(config.apiurl+'profile', { headers: { Authorization: AuthStr } })
+                            axios.get(config.apiUrl+'profile', { headers: { Authorization: AuthStr } })
                             .then(res => {
                             navigation.navigate({
                               name: 'Profile',

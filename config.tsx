@@ -1,3 +1,4 @@
 export const config = {
-      apiurl:'https://mockapi.mycpnv.ch/api/nxp/',
+      apiUrl:'https://mockapi.mycpnv.ch/api/nxp/',
+      photoUrl:'https://mockapi.mycpnv.ch/storage/pics/'
       };

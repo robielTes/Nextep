@@ -1,5 +1,6 @@
 import React from 'react';
 import {ScrollView, Text, View,Image} from 'react-native';
+import { config } from '../config';
 
 
 export default function Profile ({route}) {
@@ -8,8 +9,7 @@ export default function Profile ({route}) {
             <ScrollView style={{backgroundColor: '#fff'}}>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingVertical:10}}>
                         <Image
-                        source={require('../assets/image/daisy.png')}
-                        /* source={url:'profile.picture')} */
+                         source={{uri: config.photoUrl+profile.picture}}
                         style={{ width: 200, height: 200, borderRadius:100, alignItems: 'center' }}/>
                         <View style={{marginBottom:10}}>
                               <Text style={{fontSize:30,alignItems: 'center',fontWeight:'bold', paddingVertical:30}}>
