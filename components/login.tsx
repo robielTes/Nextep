@@ -4,8 +4,6 @@ import axios from 'axios';
 import { config } from '../config';
 import Banner from './banner';
 
-
-
 export default function Login ({navigation}) {
   const [isLogIn, setIsLogIn] = React.useState(false);
   const [isSignIn, setIsSignIn] = React.useState(false);
