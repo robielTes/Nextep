@@ -3,6 +3,7 @@ import { Text, View,TouchableOpacity,TextInput} from 'react-native';
 import axios from 'axios';
 import { config } from '../config';
 import Banner from './banner';
+import { save,getValueFor } from './api/store';
 
 export default function Login ({navigation}) {
   const [isLogIn, setIsLogIn] = React.useState(false);
@@ -42,29 +43,7 @@ export default function Login ({navigation}) {
                 style={{ padding:10, borderRadius:30, alignItems:'center',
                     backgroundColor: '#43c6a6'}}
                     onPress={() => {
-                      axios.post(config.apiUrl+'mytoken',{
-                          'username':username,
-                          'password':password})
-                          .then(res => {
-                            setToken(res.data)
-                            setIsLogIn(true);
-                            const AuthStr = 'Bearer '.concat(token); 
-                            axios.get(config.apiUrl+'profile', { headers: { Authorization: AuthStr } })
-                            .then(res => {
-                            navigation.navigate({
-                              name: 'Profile',
-                              params: {profile: res.data}
-                            }); 
-                            })
-                            .catch((err) => {
-                            console.log('error ' + err);
-                            });
-                          })
-                          .catch(err => {
-                            setIsLogIn(false);
-                          }
-                        );
-
+                      okPressed(username, password,navigation)
                     }
                     }>
 
@@ -87,4 +66,39 @@ export default function Login ({navigation}) {
         );
 }
 
+async function okPressed(username :string, password :string,navigation:any)
+{
+  let tokenName = username.split('@')[0]+'_token';
+  setToken(tokenName,username, password);
+
+  let token = await getValueFor(tokenName);
+  if (token) {
+    let profileData = await getProfile(token)
+    navigation.navigate({
+     name: 'Profile',
+     params: {profile: profileData}
+    }); 
+  }
+}
   
+async function setToken(tokenName:string, username :string, password :string)
+{    
+    let response = await axios.post(config.apiUrl+'mytoken',{
+      'username':username,
+      'password':password})
+      .then(res =>  res.data)
+      .catch(err => console.log('error ' + err))
+    save(tokenName,response);
+}
+
+
+async function getProfile(token :any)
+{
+  const AuthStr = 'Bearer '.concat(token);
+  let response = await axios.get(config.apiUrl+'profile', { headers: { Authorization: AuthStr } })
+  .then(res =>res.data)
+  .catch((err) => console.log('error ' + err))
+  return(response)
+}
+
+
