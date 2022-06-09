@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View,TouchableOpacity,TextInput} from 'react-native';
+import {StyleSheet, Text, View,TouchableOpacity,TextInput} from 'react-native';
 import axios from 'axios';
 import { config } from '../config';
 import Banner from './banner';
@@ -18,7 +18,6 @@ export default function Login ({navigation}) {
 
     let token = await getValueFor(tokenName);
     if (token) {
-      setIsLogIn(true);
       let profileData = await getProfile(token)
       navigation.navigate({
       name: 'Profile',
@@ -47,21 +46,21 @@ export default function Login ({navigation}) {
   }
 
   return(
-    <View style={{ flex: 1,backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',}}>
+    <View style={styles.container}>
       <Banner/>
       <View style={{marginBottom:10}}>
-      <Text style={{fontSize:30,fontWeight:'bold', paddingVertical:40,textAlign:'center',}}>
+      <Text style={styles.title}>
       Login
       </Text>
       <View style={{paddingBottom:80, paddingTop:40}}>
           
         <Text style={{color:'#e7e7e7',fontWeight:'bold'}}> Username or Email </Text>
-        <TextInput style={{borderBottomColor:'#f1f1f1', borderBottomWidth:1, fontWeight:'bold', color:'black',fontSize:18, paddingVertical:10}}
+        <TextInput style={styles.input}
         placeholderTextColor={'#000000'}
         placeholder="Enter your username or email"
         onChangeText={(newUsername)=> setUsername(newUsername)}/>
         <Text style={{color:'#e7e7e7',fontWeight:'bold',paddingTop:10}}> Enter Password</Text>
-        <TextInput style={{borderBottomColor:'#f1f1f1', borderBottomWidth:1, fontWeight:'bold',fontSize:18, paddingVertical:10}} 
+        <TextInput style={styles.input} 
         placeholderTextColor={'#000000'}
         placeholder="Enter your password"
         secureTextEntry={true}
@@ -69,20 +68,19 @@ export default function Login ({navigation}) {
       </View>
 
       <TouchableOpacity 
-          style={{ padding:10, borderRadius:30, alignItems:'center',
-              backgroundColor: '#43c6a6'}}
+          style={styles.loginButton}
               onPress={() => {okPressed() }
           }>
 
-        <Text style={{color:'white', fontWeight:'bold', marginHorizontal:100, fontSize:20}}> 
+        <Text style={styles.loginText}> 
           LOGIN  
         </Text>
       </TouchableOpacity> 
 
       <TouchableOpacity 
-            style={{  borderRadius:10, alignItems:'center', paddingTop:50 }}
+            style={styles.signinButton}
             onPress={() => {}}>
-      <Text style={{color:'#43c6a6',fontWeight:'bold', fontSize:15}}>
+      <Text style={styles.signinText}>
           Sign Up Now
       </Text>
       </TouchableOpacity> 
@@ -92,3 +90,14 @@ export default function Login ({navigation}) {
     
   );
 }
+
+const styles = StyleSheet.create({
+  container: {flex: 1, backgroundColor: '#fff',alignItems: 'center',justifyContent: 'center'},
+  title: { fontSize:30, fontWeight:'bold', paddingVertical:40, textAlign:'center'},
+  input:{ borderBottomColor:'#f1f1f1', borderBottomWidth:1, fontWeight:'bold', color:'black', fontSize:18, paddingVertical:10},
+  loginButton:{padding:10, borderRadius:30, alignItems:'center',backgroundColor: '#43c6a6'},
+  loginText:{color:'white', fontWeight:'bold', marginHorizontal:100, fontSize:20},
+  signinText:{color:'#43c6a6',fontWeight:'bold', fontSize:15},
+  signinButton:{borderRadius:10, alignItems:'center', paddingTop:50 }
+
+});
