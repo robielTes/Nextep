@@ -5,7 +5,7 @@ import { config } from '../config';
 import Banner from './banner';
 import { save,getValueFor } from './api/store';
 
-export default function Login ({navigation}) {
+export default function Login ({navigation}: any) {
   const [isLogIn, setIsLogIn] = React.useState(false);
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
