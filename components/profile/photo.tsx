@@ -1,16 +1,21 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet,TouchableOpacity, View} from 'react-native';
 
 
 export default function profilePhoto (props: any) {
       return(
            <View style={styles.container}>
-                  <Image
-                  source={props.source}
-                  style={styles.image}/>
-                  <Image
-                  source={require('../../assets/image/camera.png')}
-                  style={styles.editImage}/>
+                  <TouchableOpacity>
+                        <Image
+                        source={props.source}
+                        style={styles.image}/>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                        <Image
+                        source={require('../../assets/image/camera.png')}
+                        style={styles.editImage}/>
+                  </TouchableOpacity>
+                 
            </View>
       );
 }

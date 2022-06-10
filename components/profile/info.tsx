@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View,Image, StyleSheet} from 'react-native';
+import {Text, View,Image,TouchableOpacity, StyleSheet} from 'react-native';
 
 
 export default function profileInfo (props: any) {
@@ -14,9 +14,12 @@ export default function profileInfo (props: any) {
                         </Text>
                  </View>
                   <View>
-                  <Image
-                        style={styles.image}
-                        source={require('../../assets/image/pencile.png')}/>
+                        <TouchableOpacity>
+
+                        <Image
+                              style={styles.image}
+                              source={require('../../assets/image/pencile.png')}/>
+                        </TouchableOpacity>
                   </View>
             
             </View>
