@@ -1,15 +1,22 @@
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 
 
 export default function profilePhoto (props: any) {
       return(
-            <Image
+           <View style={styles.container}>
+                  <Image
                   source={props.source}
-                  style={styles.container}/>
+                  style={styles.image}/>
+                  <Image
+                  source={require('../../assets/image/camera.png')}
+                  style={styles.editImage}/>
+           </View>
       );
 }
 
 const styles = StyleSheet.create({
-      container:{width: 200, height: 200, borderRadius:100, alignItems: 'center'},
+      container: {},
+      image:{width: 170, height: 170, borderRadius:100, alignItems: 'center',marginTop:10},
+      editImage:{width: 50, height: 50, borderRadius:100, alignItems: 'center',marginTop:-45, marginLeft:120, borderColor:'#000', borderWidth:3}
 });

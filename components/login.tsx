@@ -18,6 +18,7 @@ export default function Login ({navigation}) {
 
     let token = await getValueFor(tokenName);
     if (token) {
+      setIsLogIn(true);
       let profileData = await getProfile(token)
       navigation.navigate({
       name: 'Profile',
@@ -54,17 +55,17 @@ export default function Login ({navigation}) {
       </Text>
       <View style={{paddingBottom:80, paddingTop:40}}>
           
-        <Text style={{color:'#e7e7e7',fontWeight:'bold'}}> Username or Email </Text>
+        <Text style={styles.label}> Username or Email </Text>
         <TextInput style={styles.input}
-        placeholderTextColor={'#000000'}
-        placeholder="Enter your username or email"
-        onChangeText={(newUsername)=> setUsername(newUsername)}/>
-        <Text style={{color:'#e7e7e7',fontWeight:'bold',paddingTop:10}}> Enter Password</Text>
+          placeholderTextColor={'#000000'}
+          placeholder="Enter your username or email"
+          onChangeText={(newUsername)=> setUsername(newUsername)}/>
+        <Text style={[styles.label, styles.paddingTop]}> Enter Password</Text>
         <TextInput style={styles.input} 
-        placeholderTextColor={'#000000'}
-        placeholder="Enter your password"
-        secureTextEntry={true}
-        onChangeText={(newPassword)=> setPassword(newPassword)}/>
+          placeholderTextColor={'#000000'}
+          placeholder="Enter your password"
+          secureTextEntry={true}
+          onChangeText={(newPassword)=> setPassword(newPassword)}/>
       </View>
 
       <TouchableOpacity 
@@ -94,6 +95,8 @@ export default function Login ({navigation}) {
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: '#fff',alignItems: 'center',justifyContent: 'center'},
   title: { fontSize:30, fontWeight:'bold', paddingVertical:40, textAlign:'center'},
+  label:{color:'#e7e7e7',fontWeight:'bold'},
+  paddingTop:{paddingTop:10},
   input:{ borderBottomColor:'#f1f1f1', borderBottomWidth:1, fontWeight:'bold', color:'black', fontSize:18, paddingVertical:10},
   loginButton:{padding:10, borderRadius:30, alignItems:'center',backgroundColor: '#43c6a6'},
   loginText:{color:'white', fontWeight:'bold', marginHorizontal:100, fontSize:20},

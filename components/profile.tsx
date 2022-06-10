@@ -7,6 +7,8 @@ import Info from './profile/info';
 
 export default function Profile ({route}) {
       const profile = route.params?.profile
+      let lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+
       return(
             <ScrollView style={{backgroundColor: '#fff'}}>
                   <View style={styles.container}>
@@ -19,6 +21,7 @@ export default function Profile ({route}) {
                               <View style={styles.profileView}>
                                     <Info title="Name" value={profile.lastname +" "+profile.firstname} />    
                                     <Info title="Email" value={profile.email} />
+                                    <Info title="About" value={profile.description||lorem} />
                               </View>
                         </View>
                   </View>
@@ -27,6 +30,6 @@ export default function Profile ({route}) {
   }
   const styles = StyleSheet.create({
         container:{flex: 1, alignItems: 'center', justifyContent: 'center', paddingVertical:10},
-        title: { fontSize:30,alignItems: 'center',fontWeight:'bold', paddingVertical:30},
-        profileView:{borderColor:'#f1f1f1', borderWidth:3, borderRadius:30, padding:20}
+        title: { fontSize:30,alignItems: 'center',fontWeight:'bold', padding:20},
+        profileView:{borderColor:'#f1f1f1', borderWidth:3, borderRadius:30, padding:10}
   });

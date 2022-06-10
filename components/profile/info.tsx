@@ -1,22 +1,32 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View,Image, StyleSheet} from 'react-native';
 
 
 export default function profileInfo (props: any) {
       return(
             <View style={styles.container}>
-                  <Text style={styles.title}>
+                 <View style={styles.itemContainerLeft}>
+                        <Text style={styles.title}>
                         {props.title}
-                  </Text>
-                  <Text style={styles.value}>
-                        {props.value}
-                  </Text>
+                        </Text>
+                        <Text style={styles.value} numberOfLines={1}>
+                              {props.value}
+                        </Text>
+                 </View>
+                  <View>
+                  <Image
+                        style={styles.image}
+                        source={require('../../assets/image/pencile.png')}/>
+                  </View>
+            
             </View>
            );
 }
 
 const styles = StyleSheet.create({
-      container:{paddingVertical:30,borderBottomColor:'#f1f1f1', borderBottomWidth:1},
-      title: { fontSize:15,fontWeight:'600',color:'#e7e7e7'},
-      value: { fontSize:20,fontWeight:'bold'},
+      container:{paddingVertical:15,borderBottomColor:'#f1f1f1', borderBottomWidth:1, flexDirection:'row'},
+      itemContainerLeft:{flex:1},
+      title: { fontSize:15,fontWeight:'400',color:'#e7e7e7'},
+      value: { fontSize:20,fontWeight:'500'},
+      image: {width:20, height:20, marginLeft:10}
 });
