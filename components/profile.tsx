@@ -7,6 +7,7 @@ import Info from './profile/info';
 export default function Profile ({navigation ,route}:any) {
       const profile = route.params?.profile
       let lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+      console.log(profile)
 
       return(
             <ScrollView style={{backgroundColor: '#fff'}}>
@@ -17,7 +18,7 @@ export default function Profile ({navigation ,route}:any) {
                         params: { picture: profile.picture}
                   })}>
                         <Image
-                        source={{uri: config.photoUrl+profile.picture}}
+                        source={require('../assets/image/daisy.png') ||{uri: config.photoUrl+profile.picture}}
                         style={styles.image}/>
                   </TouchableOpacity>
                   <TouchableOpacity>
