@@ -1,18 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View,Image} from 'react-native';
+import { StyleSheet, Text, View,Image, TouchableOpacity} from 'react-native';
 
 
 
 export default function NavItem (props:any)  {
     return(
-      <View style={styles.container}>
-        <View>
-          <Image style={styles.image} source={props.imageUrl} />
+      <TouchableOpacity onPress={props.handlePress}>
+        <View style={[styles.container,
+          props.active ? {backgroundColor:'#43c6a6'}:{backgroundColor:'#33354E'}]}>
+          <View>
+            <Image style={styles.image} source={props.imageUrl} />
+          </View>
+          <Text>
+            {props.name}
+          </Text>
         </View>
-        <Text>
-          {props.name}
-        </Text>
-      </View>
+      </TouchableOpacity>
   );
     }
     const styles = StyleSheet.create({
@@ -20,8 +23,7 @@ export default function NavItem (props:any)  {
         width:100,
         height:90,
         borderRadius:20,
-        backgroundColor:'#33354E',//43c6a6',
-        marginHorizontal:25,
+        marginLeft:37,
         marginVertical:25,
         alignItems:'center',
         justifyContent:'center',

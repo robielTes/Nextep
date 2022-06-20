@@ -5,6 +5,7 @@ import NavItem from './navItam';
 
 
 export default function NavBar () {
+  const [term, setTerm] = React.useState('Home');
   const navItems = [
     {
       name: 'Home',
@@ -23,7 +24,13 @@ export default function NavBar () {
       <View style={styles.container}>
         <FlatList
           data={navItems}
-          renderItem={({ item }) => <NavItem name={item.name} imageUrl={item.imageUrl} />}
+          renderItem={({ item }) => 
+          <NavItem 
+            name={item.name} 
+            imageUrl={item.imageUrl}
+            active={term === item.name}
+            handlePress={()=> setTerm(item.name)} 
+          />}
           keyExtractor={item => item.name}
           horizontal
         />
