@@ -29,7 +29,10 @@ export default function NavBar () {
             name={item.name} 
             imageUrl={item.imageUrl}
             active={term === item.name}
-            handlePress={()=> setTerm(item.name)} 
+            handlePress={()=> {
+              setTerm(item.name)
+              alert(item.name)
+            }} 
           />}
           keyExtractor={item => item.name}
           horizontal
@@ -40,6 +43,9 @@ export default function NavBar () {
     const styles = StyleSheet.create({
       container: {
         flex: 1,
+        width: '100%',
+        position: 'absolute',
+        bottom: 0,
         backgroundColor: '#33354E',
         justifyContent: 'center',
         alignItems: 'center',
