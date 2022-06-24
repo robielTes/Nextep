@@ -15,4 +15,3 @@ web-build/
 .vscode
 .expo-shared/
 .expo-shared/assets.json
-.config.tsx

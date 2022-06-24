@@ -9,7 +9,7 @@ export default function PhotoFullScreen (props: any) {
            <SafeAreaView style={styles.container}>               
                  <View style={styles.container}>
                   <Image
-                        source={require('../assets/image/daisy.png')||{uri: config.photoUrl+props.route.params.picture}}
+                        source={{uri: config.photoUrl+props.route.params.picture}}
                         style={{ width: size, height: size, }}/>                             
            </View>
            </SafeAreaView>

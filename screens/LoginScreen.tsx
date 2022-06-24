@@ -3,33 +3,27 @@ import {StyleSheet, Text, View,TouchableOpacity,TextInput} from 'react-native';
 import axios from 'axios';
 import { config } from '../config';
 import Banner from '../components/banner';
-import { save,getValueFor,getProfileData } from '../components/api/store';
+import { save,getValueFor,getProfileData } from '../components/api/store'
 
 export default function Login ({navigation}: any) {
   const [isLogIn, setIsLogIn] = React.useState(false);
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-
   async function okPressed()
   {
-    
-    let tokenName = username.split('@')[0]+'_token'
+    let tokenName = 'api_token';
+    setToken(tokenName);
 
     let token = await getValueFor(tokenName);
-    if (token === undefined) {
-      setToken(tokenName)
-      token = await getValueFor(tokenName)
-    }
-    if(token){
+    if (token) {
       setIsLogIn(true);
-    let profileData = await getProfileData(token)
-    navigation.navigate({
-    name: 'Profile',
-    params: {profile: profileData}
-    }); 
+      let profileData = await getProfileData(token)
+      navigation.navigate({
+      name: 'Profile',
+      params: {profile: profileData}
+      }); 
     }
-
   }
     
   async function setToken(tokenName:string)

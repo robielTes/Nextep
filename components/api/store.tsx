@@ -16,31 +16,14 @@ async function getValueFor(key :string) {
 }
 
 
-/* async function getProfileData(token :any)
+ async function getProfileData(token :any)
 {
   const AuthStr = 'Bearer '.concat(token);
   let response = await axios.get(config.apiUrl+'profile', { headers: { Authorization: AuthStr } })
   .then(res =>res.data)
   .catch((err) => console.log('error ' + err))
   return(response)
-} */
-
-function getProfileData(){
-  return {
-    "id": 14,
-    "email": "chills@example.net",
-    "username": "Evelyn Johns MD",
-    "firstname": "Brandt",
-    "lastname": "Kub",
-    "picture": "J4ztmwOVJQwCwAgVED9PHR8jajJxOgGYmLuYysNJ.jpg",
-    "creation_date": "2022-06-18T08:26:20.000000Z",
-    "last_logged_date": null,
-    "wallet_address": null,
-    "two_factor_auth": false,
-    "description": null
-  }
-  
-}
+} 
 
 const topics = [
   {
