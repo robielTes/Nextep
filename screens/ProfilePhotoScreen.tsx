@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, View, SafeAreaView} from 'react-native';
-import { config } from '../../config';
+import { config} from '../config'
 import { Dimensions } from 'react-native';
 
 export default function PhotoFullScreen (props: any) {
@@ -9,7 +9,7 @@ export default function PhotoFullScreen (props: any) {
            <SafeAreaView style={styles.container}>               
                  <View style={styles.container}>
                   <Image
-                        source={require('../../assets/image/daisy.png')||{uri: config.photoUrl+props.route.params.picture}}
+                        source={require('../assets/image/daisy.png')||{uri: config.photoUrl+props.route.params.picture}}
                         style={{ width: size, height: size, }}/>                             
            </View>
            </SafeAreaView>

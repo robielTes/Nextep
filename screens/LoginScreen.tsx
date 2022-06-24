@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet, Text, View,TouchableOpacity,TextInput} from 'react-native';
 import axios from 'axios';
 import { config } from '../config';
-import Banner from './banner';
-import { save,getValueFor } from './api/store';
+import Banner from '../components/banner';
+import { save,getValueFor,getProfileData } from '../components/api/store';
 
 export default function Login ({navigation}: any) {
   const [isLogIn, setIsLogIn] = React.useState(false);
@@ -13,18 +13,23 @@ export default function Login ({navigation}: any) {
 
   async function okPressed()
   {
-    let tokenName = username.split('@')[0]+'_token';
-    setToken(tokenName);
+    
+    let tokenName = username.split('@')[0]+'_token'
 
     let token = await getValueFor(tokenName);
-    if (token) {
-      setIsLogIn(true);
-      let profileData = await getProfile(token)
-      navigation.navigate({
-      name: 'Profile',
-      params: {profile: profileData}
-      }); 
+    if (token === undefined) {
+      setToken(tokenName)
+      token = await getValueFor(tokenName)
     }
+    if(token){
+      setIsLogIn(true);
+    let profileData = await getProfileData(token)
+    navigation.navigate({
+    name: 'Profile',
+    params: {profile: profileData}
+    }); 
+    }
+
   }
     
   async function setToken(tokenName:string)
@@ -35,15 +40,6 @@ export default function Login ({navigation}: any) {
         .then(res =>  res.data)
         .catch(err => console.log('error ' + err))
       save(tokenName,response);
-  }
-
-  async function getProfile(token :any)
-  {
-    const AuthStr = 'Bearer '.concat(token);
-    let response = await axios.get(config.apiUrl+'profile', { headers: { Authorization: AuthStr } })
-    .then(res =>res.data)
-    .catch((err) => console.log('error ' + err))
-    return(response)
   }
 
   return(

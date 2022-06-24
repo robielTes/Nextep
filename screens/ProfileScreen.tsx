@@ -1,23 +1,30 @@
 import React from 'react';
 import {StyleSheet, ScrollView,TouchableOpacity,Image, Text, View} from 'react-native';
 import { config } from '../config';
-import Info from './profile/info';
-import NavBar from './navBar';
+import Info from '../components/profile/info';
+import { getProfileData } from '../components/api/store';
+
 
 
 export default function Profile ({navigation ,route}:any) {
-      const profile = route.params?.profile
+      //const profile = route.params?.profile
+      const profile = getProfileData()
       let lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
 
       return(
             <ScrollView style={{backgroundColor: '#fff'}}>
+                  
                   <View style={styles.container}>
 
                         <View>
-                              <TouchableOpacity onPress={()=> navigation.navigate({                       
+                              <TouchableOpacity onPress={()=>
+                              
+                            {  console.log(navigation)
+
+                              navigation.navigate({                       
                                     name: 'ProfilePhoto',
                                     params: { picture: profile.picture}
-                              })}>
+                              })}}>
                                     <Image
                                     source={require('../assets/image/daisy.png') ||{uri: config.photoUrl+profile.picture}}
                                     style={styles.image}/>
@@ -40,7 +47,6 @@ export default function Profile ({navigation ,route}:any) {
                               <Info title="About" value={profile.description||lorem} />
                               </View>
                         </View>
-                  <NavBar />
                   </View>
             </ScrollView>
       );
