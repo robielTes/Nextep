@@ -12,7 +12,7 @@ export default function Login ({navigation}: any) {
 
   async function okPressed()
   {
-    let tokenName = 'api_token';
+    let tokenName = 'nxp_token';
     setToken(tokenName);
 
     let token = await getValueFor(tokenName);
