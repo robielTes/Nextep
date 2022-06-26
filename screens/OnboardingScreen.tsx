@@ -1,9 +1,25 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, SafeAreaView, TouchableOpacity,Image } from 'react-native';
-
 import { MaterialIcons } from "@expo/vector-icons";
+import { getValueFor,getProfileData } from '../components/api/store';
 
-const OnboardingScreen = () => {
+const OnboardingScreen = ({navigation}: any)  => {
+  const [isLogIn, setIsLogIn] = React.useState(false);
+
+  async function okPressed()
+  {
+    let tokenName = 'nxp_token';
+
+    let token = await getValueFor(tokenName);
+    if (token) {
+      let profileData = await getProfileData(token)
+      navigation.navigate({
+      name: 'Profile',
+      params: {profile: profileData}
+      }); 
+    }else{navigation.navigate('Login')}
+  }
+
  return (
 
 <SafeAreaView style={styles.container}>
@@ -14,7 +30,9 @@ const OnboardingScreen = () => {
     <Image style={styles.image}
     source={require('../assets/image/NEXTEP-Crypto-Currency-logo-1.png')} />
   </View>
-  <TouchableOpacity style={styles.button}>
+  <TouchableOpacity 
+  onPress={okPressed}
+  style={styles.button}>
     <Text style={styles.buttonText}>Bienvenue</Text>
     <MaterialIcons name="arrow-forward" size={30} color='#fff'/>
   </TouchableOpacity>
