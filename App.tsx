@@ -7,7 +7,8 @@ import AuthStack from './navigation/AuthStack';
 function App() {
  return (
   <NavigationContainer>
-  <AuthStack /> 
+  <AuthStack />
+  {/* <Tabs />  tap navigation not finish*/}
   </NavigationContainer>
   );
 

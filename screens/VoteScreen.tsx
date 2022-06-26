@@ -11,7 +11,6 @@ export default function VoteScreen ({navigation ,route}:any)  {
   const [counter, setCounter] = React.useState(Math.floor(Math.random() * 100))
   const vote = route.params?.item;
 
-  let topics = route.params?.votes;
   let profile = route.params?.profile;
   async function profilePressed()
   {
@@ -23,15 +22,31 @@ export default function VoteScreen ({navigation ,route}:any)  {
 
   async function votePressed(vote)
   {
-      if (vote == 'up' && up == false)
+      if (vote == 'up')
       {
-        setUp(true);
-        setDown(false);
-        setCounter(counter + 1);
-      }else if(vote == 'down' && down == false){
-        setDown(true);
+       if (up)
+       {
         setUp(false);
         setCounter(counter - 1);
+       }
+       else
+       {
+        setUp(true);
+        setCounter(counter + 1);
+       }
+      }
+      else
+      {
+       if (down)
+       {
+        setDown(false);
+        setCounter(counter + 1);
+       }
+       else
+       {
+        setDown(true);
+        setCounter(counter - 1);
+       }
       }
   }
 

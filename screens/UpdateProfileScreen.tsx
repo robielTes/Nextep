@@ -4,7 +4,6 @@ import axios from 'axios';
 import { config } from '../config';
 import Banner from '../components/banner';
 import { save,getValueFor } from '../components/api/store'
-import {getProfile} from '../model/data';
 
 export default function UpdateProfileScreen ({navigation ,route}:any) {
       const profile = route.params?.profile
