@@ -6,20 +6,47 @@ import Banner from '../components/banner';
 import { save,getValueFor } from '../components/api/store'
 import {getProfile} from '../model/data';
 
-export default function updateProfile ({navigation ,route}:any) {
+export default function UpdateProfile ({navigation ,route}:any) {
       const profile = route.params?.profile
-      console.log(profile)
   const [firstname, setFirstName] = React.useState(profile.firstname);
   const [lastname, setLastName] = React.useState(profile.lastname);
   const [username, setUserName] = React.useState(profile.username);
-  const [email, setEmail] = React.useState(profile.email);
   const [description, setDescription] = React.useState(profile.description);
 
-  async function okPressed()
+  async function saveProfile()
   {
-    alert('ok pressed')
-  }
+    let tokenName = 'nxp_token';
+    let token = await getValueFor(tokenName);
+    const AuthStr = 'Bearer '.concat(token);
+
+   
+      const _method = 'PATCH';
+      const payload = { firstname, lastname, username, description, _method }
+      const axiosConfig = { headers: { Authorization: AuthStr } };
+      const response = await axios.post(config.apiUrl+'profile',payload,axiosConfig)
+      .then(res =>  {
+            res.data
+            navigation.navigate('Onboarding',)
+      })
+      .catch(err => console.log('error ' + err))
+
+      return response
+
+
+    /* const configurationObject = {
+      url: config.apiUrl+'profile/photo',
+      _method: "PATCH",
+      data: { firstname, lastname, username, description },
+      headers: {
+            Authorization: AuthStr,
+      }
+    };
+      let response = await axios.post(configurationObject) 
+                  .then(res =>  res.data)
+                  .catch(err => console.log('error ' + err)) */
     
+}
+
 
   return(
     <View style={styles.container}>
@@ -28,18 +55,11 @@ export default function updateProfile ({navigation ,route}:any) {
             </Text>
 
             <View style={styles.profileView}>
-                             
-            <Text style={styles.label}> Email </Text>
-            <TextInput style={styles.input}
-            placeholderTextColor={'#000000'}
-            placeholder={profile.email}
-            onChangeText={(newEmail)=> setEmail(newEmail)}/>
 
             <Text style={styles.label}> Username</Text>
             <TextInput style={styles.input} 
             placeholderTextColor={'#000000'}
             placeholder={profile.username}
-            secureTextEntry={true}
             onChangeText={(newUsername)=> setUserName(newUsername)}/>
 
             <Text style={styles.label}> Firstname </Text>
@@ -52,22 +72,19 @@ export default function updateProfile ({navigation ,route}:any) {
             <TextInput style={styles.input} 
             placeholderTextColor={'#000000'}
             placeholder={profile.lastname}
-            secureTextEntry={true}
             onChangeText={(newLastname)=> setLastName(newLastname)}/>
 
             <Text style={styles.label}> Description</Text>
             <TextInput style={styles.input} 
             placeholderTextColor={'#000000'}
             placeholder={profile.description}
-            secureTextEntry={true}
             onChangeText={(newDescription)=> setDescription(newDescription)}/>
             </View>
 
 
       <TouchableOpacity 
           style={styles.loginButton}
-              onPress={() => {okPressed() }
-          }>
+              onPress={saveProfile}>
 
         <Text style={styles.loginText}> 
           Save  

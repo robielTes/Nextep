@@ -57,7 +57,10 @@ export default function Profile ({navigation ,route}:any) {
                         return formData
                   },
             })
-            .then(res =>  res.data)
+            .then(res =>  {
+                  res.data
+                  navigation.navigate('Onboarding',)
+            })
             .catch(err => console.log('error ' + err))
             return response
 

@@ -9,7 +9,6 @@ export default function VoteScreen ({navigation ,route}:any)  {
 
   let topics = route.params?.votes;
   let profile = route.params?.profile;
-  console.log(profile);
   async function profilePressed()
   {
       navigation.navigate({
