@@ -14,16 +14,19 @@ const OnboardingScreen = ({navigation}: any)  => {
     let token = await getValueFor(tokenName);
     if (token) {
       let voteTopics = await getVoteTopics(token)
+      let profile = await getProfile(token)
       navigation.navigate({
       name: 'Vote',
-      params: {votes: voteTopics}
-      });
+      params: {votes: voteTopics,
+      profile: profile}
+      }); 
     }else{navigation.navigate('Login')}
   }
 
  return (
 
 <SafeAreaView style={styles.container}>
+
   <View>
       <Text style={styles.title}> NEXTEP </Text>
   </View>

@@ -1,6 +1,12 @@
 import React from 'react';
 import {Text, View,Image,TouchableOpacity, StyleSheet} from 'react-native';
 
+async function editProfile(props: any)
+{
+    console.log(props);
+    
+}
+
 
 export default function profileInfo (props: any) {
       return(
@@ -13,14 +19,13 @@ export default function profileInfo (props: any) {
                               {props.value}
                         </Text>
                  </View>
-                  <View>
-                        <TouchableOpacity>
-
+                 {/*  <View>
+                        <TouchableOpacity onPress={()=> editProfile(props)}>
                         <Image
                               style={styles.image}
                               source={require('../../assets/image/pencile.png')}/>
                         </TouchableOpacity>
-                  </View>
+                  </View> */}
             
             </View>
            );

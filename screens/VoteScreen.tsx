@@ -1,14 +1,31 @@
 import React from 'react';
-import { StyleSheet, View,Text, FlatList, TextInput} from 'react-native';
+import { StyleSheet, View,Text, FlatList, TextInput, TouchableOpacity, Image} from 'react-native';
 import Feather from "@expo/vector-icons/Feather";
+
+import { config } from '../config';
 
 
 export default function VoteScreen ({navigation ,route}:any)  {
 
   let topics = route.params?.votes;
+  let profile = route.params?.profile;
+  console.log(profile);
+  async function profilePressed()
+  {
+      navigation.navigate({
+      name: 'Profile',
+      params: {profile}
+      });
+  }
 
   return(
     <View style={styles.container}>
+
+      <TouchableOpacity onPress={profilePressed}>
+                        <Image
+                        source={{uri:config.photoUrl+profile.picture}}
+                        style={styles.image}/>
+      </TouchableOpacity>
 
       <Text style={styles.title}>
             Votation
@@ -65,6 +82,7 @@ export default function VoteScreen ({navigation ,route}:any)  {
       fontSize:20,
     },
     title: { fontSize:30, fontWeight:'bold', paddingVertical:40, textAlign:'center'},
+    image:{width: 60, height: 60, borderRadius:100,marginTop:10 ,position:'absolute', top:0, left:120},
   });
 
   
