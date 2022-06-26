@@ -13,7 +13,7 @@ export default function Login ({navigation}: any) {
   async function okPressed()
   {
     let tokenName = 'nxp_token';
-    setToken(tokenName);
+    await setToken(tokenName);
 
     let token = await getValueFor(tokenName);
     if (token) {
@@ -27,7 +27,7 @@ export default function Login ({navigation}: any) {
   }
     
   async function setToken(tokenName:string)
-  {    
+  {   
       let response = await axios.post(config.apiUrl+'mytoken',{
         'username':username,
         'password':password})
