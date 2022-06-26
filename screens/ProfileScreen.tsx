@@ -7,6 +7,7 @@ import axios from 'axios';
 import FormData from 'form-data'
 import { getValueFor } from '../components/api/store';
 import { getProfile } from '../model/data';
+import NavBar from '../navigation/navBar';
 
 export default function Profile ({navigation ,route}:any) {
       const profile = route.params?.profile
@@ -77,7 +78,8 @@ export default function Profile ({navigation ,route}:any) {
       }
 
       return(
-            <ScrollView style={{backgroundColor: '#fff'}}>
+           <View style={{paddingBottom:90}}>
+                  <ScrollView style={{backgroundColor: '#fff'}}>
                   <View style={styles.container}>
                   <TouchableOpacity onPress={updateProfile}>
                                           <Image
@@ -115,7 +117,10 @@ export default function Profile ({navigation ,route}:any) {
                               
                         </View>
                   </View>
+
             </ScrollView>
+            <NavBar style={styles.navbar} navigation={navigation} />
+           </View>
       );
   }
   const styles = StyleSheet.create({
@@ -125,4 +130,5 @@ export default function Profile ({navigation ,route}:any) {
         image:{width: 170, height: 170, borderRadius:100, alignItems: 'center',marginTop:10},
         editImage:{width: 50, height: 50, borderRadius:100, alignItems: 'center',marginTop:-45, marginLeft:120, borderColor:'#000', borderWidth:3},
         editProfile:{width: 35, height: 35, position:'absolute', top:10, left:150},
+       navbar: {position: 'absolute', top:20, left: 0, right: 0, backgroundColor: '#fff'},
   });

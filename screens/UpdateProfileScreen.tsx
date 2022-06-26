@@ -3,6 +3,7 @@ import {StyleSheet, Text, View,TouchableOpacity,TextInput} from 'react-native';
 import axios from 'axios';
 import { config } from '../config';
 import { getValueFor } from '../components/api/store'
+import NavBar from '../navigation/navBar';
 
 export default function UpdateProfileScreen ({navigation ,route}:any) {
       const profile = route.params?.profile
@@ -88,19 +89,20 @@ export default function UpdateProfileScreen ({navigation ,route}:any) {
           Save  
         </Text>
       </TouchableOpacity> 
+      <NavBar/>
     </View>
     
   );
 }
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#fff',alignItems: 'center',justifyContent: 'center'},
-  title: { fontSize:30, fontWeight:'bold', paddingVertical:20, textAlign:'center'},
+  container: {flex: 1, backgroundColor: '#fff',alignItems: 'center'},
+  title: { fontSize:30, fontWeight:'bold', paddingVertical:10, textAlign:'center', marginTop:60},
   label:{color:'#e7e7e7',fontWeight:'bold', paddingTop:20},
   input:{ borderBottomColor:'#f1f1f1', borderBottomWidth:1, fontWeight:'bold', color:'black', fontSize:18, paddingVertical:10},
   loginButton:{padding:10, borderRadius:30, alignItems:'center',backgroundColor: '#43c6a6', marginTop:20},
   loginText:{color:'white', fontWeight:'bold', marginHorizontal:100, fontSize:20},
-  profileView:{borderColor:'#f1f1f1', borderWidth:3, borderRadius:30, paddingHorizontal:40},
+  profileView:{borderColor:'#f1f1f1', borderWidth:3, borderRadius:30, paddingHorizontal:50},
   
 
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View,Text, FlatList, TextInput, TouchableOpacity, Image} from 'react-native';
 import Feather from "@expo/vector-icons/Feather";
 import { config } from '../config';
+import NavBar from '../navigation/navBar';
 
 
 export default function VoteScreen ({navigation ,route}:any)  {
@@ -76,6 +77,7 @@ export default function VoteScreen ({navigation ,route}:any)  {
         </TouchableOpacity>
          </View>   
       </View>
+      <NavBar/>
      
     </View>
 );

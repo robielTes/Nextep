@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View,Text, FlatList, TextInput, TouchableOpacity, Image} from 'react-native';
 import Feather from "@expo/vector-icons/Feather";
-
+import NavBar from '../navigation/navBar';
 import { config } from '../config';
 
 
@@ -50,6 +50,7 @@ export default function VoteTopics ({navigation ,route}:any)  {
         
       />
       </View>
+      <NavBar/>
     </View>
 );
   }
