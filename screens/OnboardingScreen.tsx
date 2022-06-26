@@ -16,7 +16,7 @@ const OnboardingScreen = ({navigation}: any)  => {
       let voteTopics = await getVoteTopics(token)
       let profile = await getProfile(token)
       navigation.navigate({
-      name: 'Vote',
+      name: 'VoteTopics',
       params: {votes: voteTopics,
       profile: profile}
       }); 

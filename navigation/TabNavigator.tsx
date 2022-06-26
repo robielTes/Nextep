@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import HomeScreen from "../screens/HomeScreen";
-import VoteScreen from "../screens/VoteScreen";
+import VoteTopicsScreen from "../screens/VoteTopicsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -10,6 +10,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
+  
   return (
     <Tab.Navigator screenOptions={{
       headerShown: false,
@@ -28,7 +29,7 @@ export default function TabNavigator() {
           <MaterialIcons name="home" color={color} size={35} />
         )       
       }}/>
-      <Tab.Screen name="Vote" component={VoteScreen} options={{
+      <Tab.Screen name="VoteTopics" component={VoteTopicsScreen} options={{
         tabBarBadge: 6,
         tabBarBadgeStyle: {
           backgroundColor: '#43c6a6',

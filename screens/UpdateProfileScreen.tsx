@@ -6,7 +6,7 @@ import Banner from '../components/banner';
 import { save,getValueFor } from '../components/api/store'
 import {getProfile} from '../model/data';
 
-export default function UpdateProfile ({navigation ,route}:any) {
+export default function UpdateProfileScreen ({navigation ,route}:any) {
       const profile = route.params?.profile
   const [firstname, setFirstName] = React.useState(profile.firstname);
   const [lastname, setLastName] = React.useState(profile.lastname);
