@@ -23,7 +23,7 @@ export default function VoteScreen ({navigation ,route}:any)  {
 
   async function votePressed(vote :string)
   {
-      if (vote == 'up')
+      if (!down && vote == 'up')
       {
        if (up)
        {
@@ -36,7 +36,7 @@ export default function VoteScreen ({navigation ,route}:any)  {
         setCounter(counter + 1);
        }
       }
-      else
+      else if(!up && vote == 'down')
       {
        if (down)
        {
