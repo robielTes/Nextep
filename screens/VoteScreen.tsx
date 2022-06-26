@@ -20,7 +20,7 @@ export default function VoteScreen ({navigation ,route}:any)  {
       });
   }
 
-  async function votePressed(vote)
+  async function votePressed(vote :string)
   {
       if (vote == 'up')
       {

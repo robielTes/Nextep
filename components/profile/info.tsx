@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View,Image,TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 
 
 export default function profileInfo (props: any) {

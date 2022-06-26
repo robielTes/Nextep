@@ -2,8 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View,TouchableOpacity,TextInput} from 'react-native';
 import axios from 'axios';
 import { config } from '../config';
-import Banner from '../components/banner';
-import { save,getValueFor } from '../components/api/store'
+import { getValueFor } from '../components/api/store'
 
 export default function UpdateProfileScreen ({navigation ,route}:any) {
       const profile = route.params?.profile
@@ -16,7 +15,7 @@ export default function UpdateProfileScreen ({navigation ,route}:any) {
   {
     let tokenName = 'nxp_token';
     let token = await getValueFor(tokenName);
-    const AuthStr = 'Bearer '.concat(token);
+    const AuthStr = 'Bearer '.concat(token as string);
 
    
       const _method = 'PATCH';

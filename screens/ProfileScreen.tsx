@@ -47,7 +47,7 @@ export default function Profile ({navigation ,route}:any) {
             let tokenName = 'nxp_token';
             let token = await getValueFor(tokenName);
 
-            const AuthStr = 'Bearer '.concat(token);
+            const AuthStr = 'Bearer '.concat(token as string);
             const response = await axios.post(config.apiUrl+'profile/photo',formData,{
                   headers: {
                      Authorization: AuthStr,

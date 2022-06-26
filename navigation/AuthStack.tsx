@@ -7,7 +7,6 @@ import PhotoFullScreen from '../screens/ProfilePhotoScreen';
 import VoteTopicsScreen from '../screens/VoteTopicsScreen';
 import VoteScreen from '../screens/VoteScreen';
 import UpdateProfileScreen from '../screens/UpdateProfileScreen';
-import TabsScreen from './TabNavigator';
 
 
 const Stack = createNativeStackNavigator();
