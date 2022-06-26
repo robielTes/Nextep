@@ -3,7 +3,8 @@ import {StyleSheet, Text, View,TouchableOpacity,TextInput} from 'react-native';
 import axios from 'axios';
 import { config } from '../config';
 import Banner from '../components/banner';
-import { save,getValueFor,getProfileData } from '../components/api/store'
+import { save,getValueFor } from '../components/api/store'
+import {getProfile} from '../model/data';
 
 export default function Login ({navigation}: any) {
   const [isLogIn, setIsLogIn] = React.useState(false);
@@ -18,7 +19,7 @@ export default function Login ({navigation}: any) {
     let token = await getValueFor(tokenName);
     if (token) {
       setIsLogIn(true);
-      let profileData = await getProfileData(token)
+      let profileData = await getProfile(token)
       navigation.navigate({
       name: 'Profile',
       params: {profile: profileData}

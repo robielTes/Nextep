@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, SafeAreaView, TouchableOpacity,Image } from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
-import { getValueFor,getProfileData } from '../components/api/store';
+import { getValueFor } from '../components/api/store';
+import { getProfile,getVoteTopics } from '../model/data';
 
 const OnboardingScreen = ({navigation}: any)  => {
   const [isLogIn, setIsLogIn] = React.useState(false);
@@ -12,11 +13,11 @@ const OnboardingScreen = ({navigation}: any)  => {
 
     let token = await getValueFor(tokenName);
     if (token) {
-      let profileData = await getProfileData(token)
+      let voteTopics = await getVoteTopics(token)
       navigation.navigate({
-      name: 'Profile',
-      params: {profile: profileData}
-      }); 
+      name: 'Vote',
+      params: {votes: voteTopics}
+      });
     }else{navigation.navigate('Login')}
   }
 
