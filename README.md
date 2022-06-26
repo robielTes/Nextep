@@ -75,7 +75,7 @@ The response :
 	"two_factor_auth": 0,
 	"description": null
 }
-Store an image
+Store an  image 
 Store an image in the server with the picture name at storage/app/public/pics/<picture name>.
 
 Link the storage :
